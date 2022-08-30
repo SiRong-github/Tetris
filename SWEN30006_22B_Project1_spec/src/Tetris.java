@@ -15,6 +15,7 @@ public class Tetris extends JFrame implements GGActListener {
     private Actor blockPreview = null;   // block in preview window
     private int score = 0;
     private int slowDown = 5;
+
     private Random random = new Random(0);
 
     private TetrisGameCallback gameCallback;
@@ -27,6 +28,8 @@ public class Tetris extends JFrame implements GGActListener {
     private String [] blockActions = new String[10];
     private int blockActionIndex = 0;
 
+    private GameController gameController;
+
     // Initialise object
     private void initWithProperties(Properties properties) {
         this.seed = Integer.parseInt(properties.getProperty("seed", "30006"));
@@ -34,6 +37,8 @@ public class Tetris extends JFrame implements GGActListener {
         isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
         String blockActionProperty = properties.getProperty("autoBlockActions", "");
         blockActions = blockActionProperty.split(",");
+        String difficulty = properties.getProperty("difficulty", "easy");
+        gameController = createGameController(difficulty);
     }
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
@@ -61,6 +66,54 @@ public class Tetris extends JFrame implements GGActListener {
         slowDown = 5;
     }
 
+    GameController createGameController(String difficulty){
+        if (difficulty == "easy")
+            return new EasyController(this, random);
+        else if(difficulty == "medium")
+            return new MediumController(this,random);
+        else if(difficulty == "madness")
+            return new MadnessController(this,random);
+        return new EasyController(this, random);
+    }
+
+    // utility method for generating piece according to blockId
+    public Piece generateBlock(int blockId){
+        Piece t = null;
+        switch (blockId) {
+            case 0:
+                t = new I(this);
+                break;
+            case 1:
+                t = new J(this);
+                break;
+            case 2:
+                t = new L(this);
+                break;
+            case 3:
+                t = new O(this);
+                break;
+            case 4:
+                t = new S(this);
+                break;
+            case 5:
+                t = new T(this);
+                break;
+            case 6:
+                t = new Z(this);
+                break;
+            case 7:
+                t = new P(this);
+                break;
+            case 8:
+                t = new Q(this);
+                break;
+            case 9:
+                t = new Plus(this);
+                break;
+        }
+        return t;
+    }
+
     // create a block and assign to a preview mode
     Actor createRandomTetrisBlock() {
         if (blockPreview != null)
@@ -73,6 +126,15 @@ public class Tetris extends JFrame implements GGActListener {
         }
 
         blockActionIndex++;
+        Piece t = gameController.createRandomTetrisBlock();
+        if(isAuto){
+            t.setAutoBlockMove(currentBlockMove);
+        }
+        Piece preview = generateBlock(t.getBlockId());
+        preview.display(gameGrid2, new Location(2,1));
+        blockPreview = preview;
+
+        /*
         Actor t = null;
         int rnd = random.nextInt(7);
         switch (rnd) {
@@ -142,7 +204,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
         }
         // Show preview tetrisBlock
-
+*/
         t.setSlowDown(slowDown);
         return t;
     }
@@ -155,6 +217,8 @@ public class Tetris extends JFrame implements GGActListener {
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
     // Arrow down for going down
     private void moveBlock(int keyEvent) {
+        gameController.moveBlock((Piece)currentBlock, keyEvent);
+        /*
         if (currentBlock instanceof I) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
@@ -275,6 +339,8 @@ public class Tetris extends JFrame implements GGActListener {
                     return;
             }
         }
+
+         */
     }
     public void act() {
         removeFilledLine();
@@ -304,10 +370,13 @@ public class Tetris extends JFrame implements GGActListener {
                         a.setY(z + 1);
                 }
                 gameGrid1.refresh();
+                // TODO: Statistics Class
                 score++;
                 gameCallback.changeOfScore(score);
                 showScore(score);
                 // Set speed of tetrisBlocks
+                slowDown = gameController.getCurrentSlowDown(score);
+                /*
                 if (score > 10)
                     slowDown = 4;
                 if (score > 20)
@@ -318,6 +387,7 @@ public class Tetris extends JFrame implements GGActListener {
                     slowDown = 1;
                 if (score > 50)
                     slowDown = 0;
+                 */
             }
         }
     }
