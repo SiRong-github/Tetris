@@ -28,7 +28,7 @@ public class Tetris extends JFrame implements GGActListener {
     private String [] blockActions = new String[10];
     private int blockActionIndex = 0;
 
-    private GameController gameController;
+    private IGameController gameController;
 
     // Initialise object
     private void initWithProperties(Properties properties) {
@@ -66,14 +66,14 @@ public class Tetris extends JFrame implements GGActListener {
         slowDown = 5;
     }
 
-    GameController createGameController(String difficulty){
+    IGameController createGameController(String difficulty){
         if (difficulty == "easy")
-            return new EasyController(this, random);
+            return new GameController(this, random);
         else if(difficulty == "medium")
             return new MediumController(this,random);
         else if(difficulty == "madness")
             return new MadnessController(this,random);
-        return new EasyController(this, random);
+        return new GameController(this, random);
     }
 
     // utility method for generating piece according to blockId
