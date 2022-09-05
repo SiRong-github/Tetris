@@ -7,7 +7,8 @@ import java.util.Random;
 public abstract class GameController {
 
     protected Tetris tetris;
-    protected Random random = new Random(0);
+    protected Random random;
+
     public GameController(Tetris tetris, Random random){
         this.tetris = tetris;
         this.random = random;
