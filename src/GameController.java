@@ -25,6 +25,11 @@ public class GameController implements IGameController{
         return pieceFactory.generatePiece(piece);
     }
 
+    // delegate generate piece to pieceFactory
+    public Piece generatePiece(int blockId){
+        return pieceFactory.generatePiece(blockId);
+    }
+
     // Move piece according to game difficulty and keyEvent, see moveBlock inside Tetris class
     public void moveBlock(Piece currentPiece, int keyEvent) {
         switch (keyEvent) {

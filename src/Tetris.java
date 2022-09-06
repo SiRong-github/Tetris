@@ -28,7 +28,6 @@ public class Tetris extends JFrame implements GGActListener {
     private String [] blockActions = new String[10];
     private int blockActionIndex = 0;
 
-    private PieceFactory pieceFactory;
     private IGameController gameController;
 
     public IGameController getGameController() {
@@ -44,7 +43,6 @@ public class Tetris extends JFrame implements GGActListener {
         blockActions = blockActionProperty.split(",");
         String difficulty = properties.getProperty("difficulty", "easy");
         gameController = createGameController(difficulty);
-        pieceFactory = new PieceFactory(this);
     }
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
@@ -100,8 +98,9 @@ public class Tetris extends JFrame implements GGActListener {
         if(isAuto){
             t.setAutoBlockMove(currentBlockMove);
         }
-        Piece preview = pieceFactory.generatePiece(t.getBlockId());
+        Piece preview = gameController.generatePiece(t.getBlockId());
         preview.display(gameGrid2, new Location(2,1));
+
         blockPreview = preview;
 
         t.setSlowDown(slowDown);
