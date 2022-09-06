@@ -45,10 +45,11 @@ public abstract class Piece extends Actor{
             }
             isStarting = false;
             nb = 0;
-        } else if (nb >= blocks.size() && canAutoPlay()) {
-            autoMove();
         } else
         {
+            if (nb >= blocks.size() && canAutoPlay())
+                autoMove();
+
             setDirection(90);
             if (nb == 1)
                 nextTetrisBlock = tetris.createRandomTetrisBlock();
