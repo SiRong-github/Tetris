@@ -74,11 +74,11 @@ public class Tetris extends JFrame implements GGActListener {
 
     IGameController createGameController(String difficulty){
         PieceFactory pf = new PieceFactory(this);
-        if (difficulty == "easy")
+        if (difficulty.equals("easy"))
             return new GameController(this, pf, random);
-        else if(difficulty == "medium")
+        else if(difficulty.equals("medium"))
             return new MediumController(this,pf,random);
-        else if(difficulty == "madness")
+        else if(difficulty.equals("madness"))
             return new MadnessController(this,pf,random);
         return new GameController(this, pf,random);
     }
