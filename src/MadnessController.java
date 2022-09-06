@@ -39,7 +39,7 @@ public class MadnessController extends GameController{
 
     // Move piece according to game difficulty and keyEvent, see moveBlock inside Tetris class
     @Override
-    public void moveBlock(Piece currentPiece, int keyEvent) {
+    public void moveBlock(Piece currentPiece, int keyEvent){
         switch (keyEvent) {
             case KeyEvent.VK_LEFT:
                 currentPiece.left();
