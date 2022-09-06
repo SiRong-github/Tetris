@@ -7,8 +7,8 @@ import java.util.Random;
 public class MediumController extends GameController{
     private final static double FASTER_FACTOR = 0.2;
 
-    public MediumController(Tetris tetris, Random random){
-        super(tetris, random);
+    public MediumController(Tetris tetris, PieceFactory pieceFactory, Random random){
+        super(tetris, pieceFactory, random);
     }
 
     // create block according to game difficulty by calling Tetris.generateBlock(blockId)
@@ -23,17 +23,7 @@ public class MediumController extends GameController{
 
         else {
             int rand = random.nextInt(ADDITIONAL_MEDIUM_PIECES);
-            switch (rand) {
-                case 0:
-                    piece = new P(tetris);
-                    break;
-                case 1:
-                    piece = new Q(tetris);
-                    break;
-                default:
-                    piece = new Plus(tetris);
-                    break;
-            }
+            piece = pieceFactory.generatePiece(rand);
         }
 
         return piece;

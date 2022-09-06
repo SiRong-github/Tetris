@@ -28,6 +28,7 @@ public class Tetris extends JFrame implements GGActListener {
     private String [] blockActions = new String[10];
     private int blockActionIndex = 0;
 
+    private PieceFactory pieceFactory;
     private IGameController gameController;
 
     public IGameController getGameController() {
@@ -43,6 +44,7 @@ public class Tetris extends JFrame implements GGActListener {
         blockActions = blockActionProperty.split(",");
         String difficulty = properties.getProperty("difficulty", "easy");
         gameController = createGameController(difficulty);
+        pieceFactory = new PieceFactory(this);
     }
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
@@ -71,53 +73,16 @@ public class Tetris extends JFrame implements GGActListener {
     }
 
     IGameController createGameController(String difficulty){
+        PieceFactory pf = new PieceFactory(this);
         if (difficulty == "easy")
-            return new GameController(this, random);
+            return new GameController(this, pf, random);
         else if(difficulty == "medium")
-            return new MediumController(this,random);
+            return new MediumController(this,pf,random);
         else if(difficulty == "madness")
-            return new MadnessController(this,random);
-        return new GameController(this, random);
+            return new MadnessController(this,pf,random);
+        return new GameController(this, pf,random);
     }
 
-    // utility method for generating piece according to blockId
-    public Piece generateBlock(int blockId){
-        Piece t = null;
-        switch (blockId) {
-            case 0:
-                t = new I(this);
-                break;
-            case 1:
-                t = new J(this);
-                break;
-            case 2:
-                t = new L(this);
-                break;
-            case 3:
-                t = new O(this);
-                break;
-            case 4:
-                t = new S(this);
-                break;
-            case 5:
-                t = new T(this);
-                break;
-            case 6:
-                t = new Z(this);
-                break;
-            case 7:
-                t = new P(this);
-                break;
-            case 8:
-                t = new Q(this);
-                break;
-            case 9:
-                t = new Plus(this);
-                break;
-        }
-
-        return t;
-    }
 
     // create a block and assign to a preview mode
     Actor createRandomTetrisBlock() {
@@ -135,81 +100,10 @@ public class Tetris extends JFrame implements GGActListener {
         if(isAuto){
             t.setAutoBlockMove(currentBlockMove);
         }
-        Piece preview = generateBlock(t.getBlockId());
+        Piece preview = pieceFactory.generatePiece(t.getBlockId());
         preview.display(gameGrid2, new Location(2,1));
         blockPreview = preview;
 
-        /*
-        Actor t = null;
-        int rnd = random.nextInt(7);
-        switch (rnd) {
-            case 0:
-                t = new I(this);
-                if (isAuto) {
-                    ((I) t).setAutoBlockMove(currentBlockMove);
-                }
-
-                I previewI = new I(this);
-                previewI.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewI;
-                break;
-            case 1:
-                t = new J(this);
-                if (isAuto) {
-                    ((J) t).setAutoBlockMove(currentBlockMove);
-                }
-                J previewJ = new J(this);
-                previewJ.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewJ;
-                break;
-            case 2:
-                t = new L(this);
-                if (isAuto) {
-                    ((L) t).setAutoBlockMove(currentBlockMove);
-                }
-                L previewL = new L(this);
-                previewL.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewL;
-                break;
-            case 3:
-                t = new O(this);
-                if (isAuto) {
-                    ((O) t).setAutoBlockMove(currentBlockMove);
-                }
-                O previewO = new O(this);
-                previewO.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewO;
-                break;
-            case 4:
-                t = new S(this);
-                if (isAuto) {
-                    ((S) t).setAutoBlockMove(currentBlockMove);
-                }
-                S previewS = new S(this);
-                previewS.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewS;
-                break;
-            case 5:
-                t = new T(this);
-                if (isAuto) {
-                    ((T) t).setAutoBlockMove(currentBlockMove);
-                }
-                T previewT = new T(this);
-                previewT.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewT;
-                break;
-            case 6:
-                t = new Z(this);
-                if (isAuto) {
-                    ((Z) t).setAutoBlockMove(currentBlockMove);
-                }
-                Z previewZ = new Z(this);
-                previewZ.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewZ;
-                break;
-        }
-        // Show preview tetrisBlock
-*/
         t.setSlowDown(slowDown);
         return t;
     }
@@ -223,129 +117,6 @@ public class Tetris extends JFrame implements GGActListener {
     // Arrow down for going down
     private void moveBlock(int keyEvent) {
         gameController.moveBlock((Piece)currentBlock, keyEvent);
-        /*
-        if (currentBlock instanceof I) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((I) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((I) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((I) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((I) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof J) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((J) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((J) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((J) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((J) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof L) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((L) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((L) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((L) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((L) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof O) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((O) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((O) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((O) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((O) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof S) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((S) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((S) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((S) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((S) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof T) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((T) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((T) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((T) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((T) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof Z) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((Z) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((Z) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((Z) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((Z) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        }
-
-         */
     }
     public void act() {
         removeFilledLine();
@@ -381,18 +152,6 @@ public class Tetris extends JFrame implements GGActListener {
                 showScore(score);
                 // Set speed of tetrisBlocks
                 slowDown = gameController.getCurrentSlowDown(score);
-                /*
-                if (score > 10)
-                    slowDown = 4;
-                if (score > 20)
-                    slowDown = 3;
-                if (score > 30)
-                    slowDown = 2;
-                if (score > 40)
-                    slowDown = 1;
-                if (score > 50)
-                    slowDown = 0;
-                 */
             }
         }
     }

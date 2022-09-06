@@ -11,31 +11,18 @@ public class GameController implements IGameController{
 
     protected Tetris tetris;
     protected Random random;
+    protected PieceFactory pieceFactory;
 
-    public GameController(Tetris tetris, Random random){
+    public GameController(Tetris tetris, PieceFactory pieceFactory, Random random){
         this.tetris = tetris;
+        this.pieceFactory = pieceFactory;
         this.random = random;
     }
 
     // create block according to game difficulty by calling Tetris.generateBlock(blockId)
     public Piece createRandomTetrisBlock() {
         int piece = random.nextInt(NUM_PIECES_EASY);
-        switch (piece) {
-            case 0:
-                return new I(tetris);
-            case 1:
-                return new J(tetris);
-            case 2:
-                return new L(tetris);
-            case 3:
-                return new O(tetris);
-            case 4:
-                return new S(tetris);
-            case 5:
-                return new T(tetris);
-            default:
-                return new Z(tetris);
-        }
+        return pieceFactory.generatePiece(piece);
     }
 
     // Move piece according to game difficulty and keyEvent, see moveBlock inside Tetris class

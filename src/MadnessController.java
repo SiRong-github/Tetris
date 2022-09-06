@@ -4,8 +4,8 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class MadnessController extends GameController{
-    public MadnessController(Tetris tetris, Random random){
-        super(tetris, random);
+    public MadnessController(Tetris tetris, PieceFactory pieceFactory, Random random){
+        super(tetris, pieceFactory, random);
     }
 
 
@@ -21,17 +21,7 @@ public class MadnessController extends GameController{
 
         else {
             int rand = random.nextInt(ADDITIONAL_MEDIUM_PIECES);
-            switch (rand) {
-                case 0:
-                    piece = new P(tetris);
-                    break;
-                case 1:
-                    piece = new Q(tetris);
-                    break;
-                default:
-                    piece = new Plus(tetris);
-                    break;
-            }
+            piece = pieceFactory.generatePiece(rand);
         }
 
         return piece;
