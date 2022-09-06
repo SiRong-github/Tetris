@@ -29,10 +29,13 @@ public class Tetris extends JFrame implements GGActListener {
     private int blockActionIndex = 0;
 
     private IGameController gameController;
+<<<<<<< HEAD
 
     public IGameController getGameController() {
         return this.gameController;
     }
+=======
+>>>>>>> d5d367e4e947398e1a3fa6d433e48671207b62f4
 
     // Initialise object
     private void initWithProperties(Properties properties) {
