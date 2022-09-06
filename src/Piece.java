@@ -4,6 +4,8 @@ import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 
+import java.awt.event.KeyEvent;
+
 import java.util.ArrayList;
 
 public abstract class Piece extends Actor{
@@ -68,18 +70,25 @@ public abstract class Piece extends Actor{
     // Based on the input in the properties file, the block can move automatically
     private void autoMove() {
         String moveString = autoBlockMove.substring(autoBlockIndex, autoBlockIndex + 1);
+
+        int keyEvent;
+
         switch (moveString) {
             case "L":
-                left();
+                keyEvent = KeyEvent.VK_LEFT;
+                this.tetris.getGameController().moveBlock(this, keyEvent);
                 break;
             case "R":
-                right();
+                keyEvent = KeyEvent.VK_RIGHT;
+                this.tetris.getGameController().moveBlock(this, keyEvent);
                 break;
             case "T":
-                rotate();
+                keyEvent = KeyEvent.VK_UP;
+                this.tetris.getGameController().moveBlock(this, keyEvent);
                 break;
             case "D":
-                drop();
+                keyEvent = KeyEvent.VK_DOWN;
+                this.tetris.getGameController().moveBlock(this, keyEvent);
                 break;
         }
 
