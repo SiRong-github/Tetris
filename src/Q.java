@@ -3,6 +3,10 @@ package src;
 import ch.aplu.jgamegrid.*;
 
 public class Q extends Piece{
+    /*
+     * Author : Xiaojiang Zheng
+     * Initializing blocks for Q piece.
+     */
     Q(Tetris tetris)
     {
         super(tetris, 8, "Q");

@@ -9,6 +9,10 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public abstract class Piece extends Actor{
+    /*
+     * Refactored by Xiaojiang Zheng
+     * Bring original code from I, J etc. into this super class.
+     */
     protected Location[][] r;
 
     protected final int blockId;

@@ -3,6 +3,10 @@ package src;
 import ch.aplu.jgamegrid.*;
 
 public class Plus extends Piece{
+    /*
+     * Author : Xiaojiang Zheng
+     * Initializing blocks for + piece.
+     */
     Plus(Tetris tetris)
     {
         super(tetris, 9, "+");
