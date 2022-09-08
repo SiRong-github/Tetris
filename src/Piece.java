@@ -13,6 +13,20 @@ public abstract class Piece extends Actor{
      * Refactored by Xiaojiang Zheng
      * Bring original code from I, J etc. into this super class.
      */
+
+    public static class PieceType{
+        public static final int I = 0;
+        public static final int J = 1;
+        public static final int L = 2;
+        public static final int O = 3;
+        public static final int S = 4;
+        public static final int T = 5;
+        public static final int Z = 6;
+        public static final int P = 7;
+        public static final int Q = 8;
+        public static final int Plus = 9;
+    }
+
     protected Location[][] r;
 
     protected final int blockId;

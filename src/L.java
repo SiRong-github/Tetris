@@ -9,7 +9,7 @@ class L extends Piece
 {
   L(Tetris tetris)
   {
-    super(tetris, 2, "L");
+    super(tetris, PieceType.L, "L");
     this.r = new Location[4][4];
     // rotId 0
     r[0][0] = new Location(new Location(1, 0));

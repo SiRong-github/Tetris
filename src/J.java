@@ -10,7 +10,7 @@ class J extends Piece
 
   J(Tetris tetris)
   {
-    super(tetris, 1, "J");
+    super(tetris, PieceType.J, "J");
     this.r = new Location[4][4];
     // rotId 0
     r[0][0] = new Location(new Location(-1, 0));

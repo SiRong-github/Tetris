@@ -9,7 +9,7 @@ public class P extends Piece{
      */
     P(Tetris tetris)
     {
-        super(tetris, 7, "P");
+        super(tetris, PieceType.P, "P");
         this.r = new Location[5][4];
         // rotId 0
         r[0][0] = new Location(new Location(0, 0));
