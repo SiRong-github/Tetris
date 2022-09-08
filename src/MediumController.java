@@ -18,12 +18,12 @@ public class MediumController extends GameController{
         Piece piece;
 
         if (!isPiecePQPlus) {
-            piece = this.createRandomTetrisBlock();
+            piece = super.createRandomTetrisBlock();
         }
 
         else {
             int rand = random.nextInt(ADDITIONAL_MEDIUM_PIECES);
-            piece = pieceFactory.generatePiece(rand);
+            piece = pieceFactory.generatePiece(NUM_PIECES_EASY + rand);
         }
 
         return piece;
