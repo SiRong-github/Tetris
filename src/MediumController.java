@@ -13,12 +13,12 @@ public class MediumController extends GameController{
 
     // create block according to game difficulty by calling Tetris.generateBlock(blockId)
     @Override
-    public Piece createRandomTetrisBlock() {
+    public Piece createRandomTetrisPiece() {
         boolean isPiecePQPlus = (random.nextInt(10) >= NUM_PIECES_EASY) ? true : false;
         Piece piece;
 
         if (!isPiecePQPlus) {
-            piece = super.createRandomTetrisBlock();
+            piece = super.createRandomTetrisPiece();
         }
 
         else {

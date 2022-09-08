@@ -65,7 +65,7 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.setSimulationPeriod(getSimulationTime());
 
         // Add the first block to start
-        currentBlock = createRandomTetrisBlock();
+        currentBlock = createRandomTetrisPiece();
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         playerStatistics.overwritePiece(statistics, (Piece) currentBlock);
         gameGrid1.doRun();
@@ -91,7 +91,7 @@ public class Tetris extends JFrame implements GGActListener {
 
 
     // create a block and assign to a preview mode
-    Actor createRandomTetrisBlock() {
+    Actor createRandomTetrisPiece() {
         if (blockPreview != null)
             blockPreview.removeSelf();
 
@@ -102,7 +102,7 @@ public class Tetris extends JFrame implements GGActListener {
         }
 
         blockActionIndex++;
-        Piece t = gameController.createRandomTetrisBlock();
+        Piece t = gameController.createRandomTetrisPiece();
         if(isAuto){
             t.setAutoBlockMove(currentBlockMove);
         }
@@ -193,7 +193,7 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid2.refresh();
         gameGrid2.delay(getDelayTime());
         blockActionIndex = 0;
-        currentBlock = createRandomTetrisBlock();
+        currentBlock = createRandomTetrisPiece();
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
         gameGrid1.requestFocus();

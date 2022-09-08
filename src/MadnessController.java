@@ -11,17 +11,17 @@ public class MadnessController extends GameController{
 
     // create block according to game difficulty by calling Tetris.generateBlock(blockId)
     @Override
-    public Piece createRandomTetrisBlock(){
+    public Piece createRandomTetrisPiece(){
         boolean isPiecePQPlus = (random.nextInt(10) >= NUM_PIECES_EASY) ? true : false;
         Piece piece;
 
         if (!isPiecePQPlus) {
-            piece = this.createRandomTetrisBlock();
+            piece = super.createRandomTetrisPiece();
         }
 
         else {
             int rand = random.nextInt(ADDITIONAL_MEDIUM_PIECES);
-            piece = pieceFactory.generatePiece(rand);
+            piece = pieceFactory.generatePiece(NUM_PIECES_EASY + rand);
         }
 
         return piece;

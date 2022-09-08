@@ -70,7 +70,7 @@ public abstract class Piece extends Actor{
 
             setDirection(90);
             if (nb == 1)
-                nextTetrisBlock = tetris.createRandomTetrisBlock();
+                nextTetrisBlock = tetris.createRandomTetrisPiece();
             if (!advance())
             {
                 if (nb == 0)  // Game is over when tetrisBlock cannot fall down

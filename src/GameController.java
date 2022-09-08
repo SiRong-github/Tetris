@@ -20,7 +20,7 @@ public class GameController implements IGameController{
     }
 
     // create block according to game difficulty by calling Tetris.generateBlock(blockId)
-    public Piece createRandomTetrisBlock() {
+    public Piece createRandomTetrisPiece() {
         int piece = random.nextInt(NUM_PIECES_EASY);
         return pieceFactory.generatePiece(piece);
     }
