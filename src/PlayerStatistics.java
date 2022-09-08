@@ -161,33 +161,4 @@ public class PlayerStatistics {
         }
     }
 
-    // Overwrite score per round in text file
-    public void overwriteAverage(File statistics, int score, int round) {
-        try {
-            // Read text and append to StringBuffer
-            Scanner sc = new Scanner(statistics);
-            StringBuffer buffer = new StringBuffer();
-
-            while (sc.hasNextLine()) {
-                buffer.append(sc.nextLine() + System.lineSeparator());
-            }
-
-            String fileContents = buffer.toString();
-            sc.close();
-
-            // Replace average score
-            String oldAve = "Average score per round: " + aveScore;
-            aveScore = (totalScore + score)/round;
-            String newAve = "Average score per round: " + aveScore;
-            fileContents = fileContents.replace(oldAve, newAve);
-
-            fileContents = fileContents.replace(oldAve, newAve);
-            FileWriter writer = new FileWriter(statistics);
-            writer.append(fileContents);
-            writer.flush();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-        }
-    }
-
 }
