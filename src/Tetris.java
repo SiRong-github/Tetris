@@ -2,6 +2,7 @@ package src;// Tetris.java
 
 import ch.aplu.jgamegrid.*;
 
+import java.io.File;
 import java.security.Key;
 import java.util.*;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,8 @@ public class Tetris extends JFrame implements GGActListener {
     private Actor blockPreview = null;   // block in preview window
     private int score = 0;
     private int slowDown = 5;
+    private int round = 1;
+    protected File statistics = new File("Statistics.txt");
 
     private Random random = new Random(0);
 
@@ -33,6 +36,8 @@ public class Tetris extends JFrame implements GGActListener {
     public IGameController getGameController() {
         return this.gameController;
     }
+    private PlayerStatistics playerStatistics = new PlayerStatistics();
+
 
     // Initialise object
     private void initWithProperties(Properties properties) {
@@ -43,6 +48,8 @@ public class Tetris extends JFrame implements GGActListener {
         blockActions = blockActionProperty.split(",");
         String difficulty = properties.getProperty("difficulty", "easy");
         gameController = createGameController(difficulty);
+        playerStatistics.createFile(statistics, difficulty, round);
+        playerStatistics.appendRoundToFile(statistics, round, score);
     }
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
@@ -60,6 +67,7 @@ public class Tetris extends JFrame implements GGActListener {
         // Add the first block to start
         currentBlock = createRandomTetrisBlock();
         gameGrid1.addActor(currentBlock, new Location(6, 0));
+        playerStatistics.overwritePiece(statistics, (Piece) currentBlock);
         gameGrid1.doRun();
 
         // Do not lose keyboard focus when clicking this window
@@ -110,6 +118,7 @@ public class Tetris extends JFrame implements GGActListener {
     void setCurrentTetrisBlock(Actor t) {
         gameCallback.changeOfBlock(currentBlock);
         currentBlock = t;
+        playerStatistics.overwritePiece(statistics, (Piece) t);
     }
 
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
@@ -145,10 +154,10 @@ public class Tetris extends JFrame implements GGActListener {
                         a.setY(z + 1);
                 }
                 gameGrid1.refresh();
-                // TODO: Statistics Class
                 score++;
                 gameCallback.changeOfScore(score);
                 showScore(score);
+                playerStatistics.overwriteScore(statistics, round, score);
                 // Set speed of tetrisBlocks
                 slowDown = gameController.getCurrentSlowDown(score);
             }
@@ -188,7 +197,11 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
         gameGrid1.requestFocus();
+        playerStatistics.prevScore(score);
+        playerStatistics.updateTotalScore();
         score = 0;
+        round++;
+        playerStatistics.appendRoundToFile(statistics, round, score);
         showScore(score);
         slowDown = 5;
     }
