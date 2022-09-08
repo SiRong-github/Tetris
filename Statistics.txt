@@ -1,41 +1,15 @@
-Difficulty: easy
-Average score per round: 2
+Difficulty: madness
+Average score per round: 0
 ------------------------------------------
 Round #1
-Score: 4
+Score: 0
 P: 0
 Q: 0
-S: 2
-T: 5
-I: 4
-J: 5
-Z: 7
+S: 0
+T: 0
+I: 9
+J: 9
+Z: 0
 +: 0
-L: 7
-O: 6
-------------------------------------------
-Round #2
-Score: 4
-P: 0
-Q: 0
-S: 2
-T: 5
-I: 4
-J: 5
-Z: 7
-+: 0
-L: 7
-O: 6
-------------------------------------------
-Round #3
-Score: 4
-P: 0
-Q: 0
-S: 2
-T: 5
-I: 1
-J: 5
-Z: 7
-+: 0
-L: 7
-O: 6
+L: 4
+O: 0

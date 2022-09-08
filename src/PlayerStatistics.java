@@ -13,9 +13,6 @@ public class PlayerStatistics {
 
     // Variables
     private static final int DASH_NUM = 42;
-    private static final int TOP_LINE = 2;
-    private static final int ROUND_ONE_LINE = 3;
-    private static final int NEW_ROUND_LINE = 14;
     private int prevScore = 0;
     private int aveScore = 0;
     private int totalScore = 0;
@@ -42,12 +39,12 @@ public class PlayerStatistics {
     }
 
     // Previous score
-    public void prevScore(int score) {
+    public void setPrevScore(int score) {
         prevScore = score;
     }
 
     // Update total score
-    public void updateTotalScore() {
+    public void setTotalScore() {
         totalScore += prevScore;
     }
 
@@ -114,8 +111,6 @@ public class PlayerStatistics {
             String oldScore = "Score: " + prevScore;
             String newScore = "Score: " + score;
             fileContents = fileContents.replace(oldScore, newScore);
-            scorePerRound.replace(round, score);
-
 
             // Replace average score
             String oldAve = "Average score per round: " + aveScore;

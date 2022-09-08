@@ -197,8 +197,8 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
         gameGrid1.requestFocus();
-        playerStatistics.prevScore(score);
-        playerStatistics.updateTotalScore();
+        playerStatistics.setPrevScore(score);
+        playerStatistics.setTotalScore();
         score = 0;
         round++;
         playerStatistics.appendRoundToFile(statistics, round, score);
