@@ -92,8 +92,39 @@ public class PlayerStatistics {
         }
     }
 
+    // Overwrite ave per round in text file
+    public void overwriteAve(File statistics, int round, int score) {
+        try {
+            /* Read text and append to StringBuffer */
+            Scanner sc = new Scanner(statistics);
+            StringBuffer buffer = new StringBuffer();
+
+            while (sc.hasNextLine()) {
+                buffer.append(sc.nextLine() + System.lineSeparator());
+            }
+
+            String fileContents = buffer.toString();
+            sc.close();
+
+            // Replace average score
+            String oldAve = "Average score per round: " + aveScore;
+            aveScore = (totalScore + score)/round;
+            String newAve = "Average score per round: " + aveScore;
+            fileContents = fileContents.replace(oldAve, newAve);
+
+            FileWriter writer = new FileWriter(statistics);
+            fileContents = fileContents.replace(oldAve, newAve);
+            writer.append(fileContents);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
+    }
+
     // Overwrite score per round in text file
     public void overwriteScore(File statistics, int round, int score) {
+        overwriteAve(statistics, round, score);
         try {
             /* Read text and append to StringBuffer */
             Scanner sc = new Scanner(statistics);
@@ -110,17 +141,16 @@ public class PlayerStatistics {
             // Replace score
             String oldScore = "Score: " + prevScore;
             String newScore = "Score: " + score;
-            fileContents = fileContents.replace(oldScore, newScore);
-
-            // Replace average score
-            String oldAve = "Average score per round: " + aveScore;
-            aveScore = (totalScore + score)/round;
-            String newAve = "Average score per round: " + aveScore;
-            fileContents = fileContents.replace(oldAve, newAve);
-
+            int start = fileContents.lastIndexOf(oldScore);
+            StringBuilder b = new StringBuilder();
+            b.append(fileContents.substring(0, start));
+            b.append(newScore);
+            b.append(fileContents.substring(start + newScore.length()));
             FileWriter writer = new FileWriter(statistics);
-            writer.append(fileContents);
+            writer.append(b);
             writer.flush();
+            writer.close();
+            scorePerRound.replace(round, score);
         } catch (IOException e) {
             System.out.println("An error occurred.");
         }
@@ -145,12 +175,17 @@ public class PlayerStatistics {
             // Replace piece count
             String oldPiece = blockName + ": " + count;
             String newPiece = blockName + ": " + (count+1);
+            int start = fileContents.lastIndexOf(oldPiece);
+            StringBuilder b = new StringBuilder();
+            b.append(fileContents.substring(0, start));
+            b.append(newPiece);
+            b.append(fileContents.substring(start + newPiece.length()));
+            FileWriter writer = new FileWriter(statistics);
+            writer.append(b);
+            writer.flush();
+            writer.close();
             countPieces.replace(blockName, count+1);
 
-            fileContents = fileContents.replace(oldPiece, newPiece);
-            FileWriter writer = new FileWriter(statistics);
-            writer.append(fileContents);
-            writer.flush();
         } catch (IOException e) {
             System.out.println("An error occurred.");
         }
