@@ -29,6 +29,15 @@ This version of Tetris is similar to the original Tetris game, especially in ter
 
 4. There is a Statistics file that updates the average score per round and the number of pieces played as well as the average score for each round.
 
+## Demo
+
+
+https://github.com/SiRong-github/Tetris/assets/62817554/307ce0ec-df6f-45aa-a492-7a534217a2c1
+
+
+<img width="470" alt="Screenshot 2024-02-07 at 1 47 00 pm" src="https://github.com/SiRong-github/Tetris/assets/62817554/9f0dfab0-ce50-4ce0-9d4e-668e92f459cb">
+
+
 # Provided Template Folder, Source Files (and Their Libraries) and Test Cases
 
 1. lib folder
