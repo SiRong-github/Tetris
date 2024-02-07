@@ -60,7 +60,7 @@ Contains the gif images of the TetroBlocks.
 
     Runs the project based on the given command line arguments which are based on the selected test case in the properties folder.
 
-    b. Tetris Components, TetrisGameCallback, TetroBlock
+    b. Tetris Components, TetrisGameCallback, TetroBlock, Tetris.Form
 
         i. TetrisComponents
 
@@ -73,6 +73,11 @@ Contains the gif images of the TetroBlocks.
         iii. TetroBlock 
 
         Displays the provided Tetris piece.
+
+        iv. Tetris.Form
+
+        Also includes the GUI of the project.
+
 
     c. Tetris
 
