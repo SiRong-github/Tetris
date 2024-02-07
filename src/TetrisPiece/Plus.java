@@ -1,10 +1,11 @@
-package src;
+package src.TetrisPiece;
 
 import ch.aplu.jgamegrid.*;
+import src.utility.Tetris;
+import src.utility.TetroBlock;
 
-public class Plus extends Piece{
+public class Plus extends Piece {
     /*
-     * Author : Xiaojiang Zheng
      * Initializing blocks for + piece.
      */
     Plus(Tetris tetris)

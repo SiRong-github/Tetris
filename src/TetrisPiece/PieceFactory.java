@@ -1,8 +1,9 @@
-package src;
+package src.TetrisPiece;
+
+import src.utility.Tetris;
 
 public class PieceFactory {
     /*
-    Author: Xiaojiang Zheng
     Create Piece according to piece ID for current Tetris game.
     Used by game controller.
      */

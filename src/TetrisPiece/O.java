@@ -1,9 +1,8 @@
 // O.java
-package src;
+package src.TetrisPiece;
 import ch.aplu.jgamegrid.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import src.utility.Tetris;
+import src.utility.TetroBlock;
 
 class O extends Piece
 {

@@ -1,14 +1,11 @@
-package src;
-
-import ch.aplu.jgamegrid.Actor;
-import src.utility.PropertiesLoader;
+package src.utility;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Properties;
 
 public class Driver {
-    public static final String DEFAULT_PROPERTIES_PATH = "properties/test4.properties";
+    public static final String DEFAULT_PROPERTIES_PATH = "properties/test1.properties";
 
     /**
      * Starting point

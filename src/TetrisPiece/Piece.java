@@ -1,8 +1,10 @@
-package src;
+package src.TetrisPiece;
 
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
+import src.utility.Tetris;
+import src.utility.TetroBlock;
 
 import java.awt.event.KeyEvent;
 
@@ -10,7 +12,6 @@ import java.util.ArrayList;
 
 public abstract class Piece extends Actor{
     /*
-     * Refactored by Xiaojiang Zheng
      * Bring original code from I, J etc. into this super class.
      */
 
@@ -127,7 +128,7 @@ public abstract class Piece extends Actor{
         }
     }
 
-    void display(GameGrid gg, Location location)
+    public void display(GameGrid gg, Location location)
     {
         for (TetroBlock a : blocks)
         {
@@ -138,7 +139,7 @@ public abstract class Piece extends Actor{
     }
 
     // Actual actions on the block: move the block left, right, drop and rotate the block
-    void left()
+    public void left()
     {
         if (isStarting)
             return;
@@ -146,7 +147,7 @@ public abstract class Piece extends Actor{
         advance();
     }
 
-    void right()
+    public void right()
     {
         if (isStarting)
             return;
@@ -154,7 +155,7 @@ public abstract class Piece extends Actor{
         advance();
     }
 
-    void rotate()
+    public void rotate()
     {
         if (isStarting)
             return;
@@ -196,7 +197,7 @@ public abstract class Piece extends Actor{
         return true;
     }
 
-    void drop()
+    public void drop()
     {
         if (isStarting)
             return;

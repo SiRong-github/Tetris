@@ -1,5 +1,6 @@
-// Shanaia Chen
-package src;
+package src.PlayerStatistics;
+import src.TetrisPiece.Piece;
+
 import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -163,7 +164,7 @@ public class PlayerStatistics {
             // Read text and append to StringBuffer
             Scanner sc = new Scanner(statistics);
             StringBuffer buffer = new StringBuffer();
-            String blockName = piece.blockName;
+            String blockName = piece.getBlockName();
             int count = countPieces.get(blockName);
 
             while (sc.hasNextLine()) {

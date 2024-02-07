@@ -1,4 +1,4 @@
-package src;
+package src.utility;
 
 public class TetrisComponents {
     // AUTO GENERATED - do not modify//GEN-BEGIN:variables

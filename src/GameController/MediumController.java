@@ -1,10 +1,12 @@
-// Pratika Dlima
+package src.GameController;
 
-package src;
+import src.TetrisPiece.Piece;
+import src.TetrisPiece.PieceFactory;
+import src.utility.Tetris;
 
 import java.util.Random;
 
-public class MediumController extends GameController{
+public class MediumController extends GameController {
     private final static double FASTER_FACTOR = 0.2;
 
     public MediumController(Tetris tetris, PieceFactory pieceFactory, Random random){

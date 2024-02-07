@@ -1,13 +1,20 @@
-package src;// Tetris.java
+package src.utility;
 
 import ch.aplu.jgamegrid.*;
+import src.GameController.GameController;
+import src.GameController.IGameController;
+import src.GameController.MadnessController;
+import src.GameController.MediumController;
+import src.PlayerStatistics.PlayerStatistics;
+import src.TetrisPiece.Piece;
+import src.TetrisPiece.PieceFactory;
+import src.utility.TetrisComponents;
+import src.utility.TetrisGameCallback;
+import src.utility.TetroBlock;
 
 import java.io.File;
-import java.security.Key;
 import java.util.*;
-import java.awt.event.KeyEvent;
 import java.awt.*;
-import java.util.List;
 import javax.swing.*;
 
 public class Tetris extends JFrame implements GGActListener {
@@ -91,7 +98,7 @@ public class Tetris extends JFrame implements GGActListener {
 
 
     // create a block and assign to a preview mode
-    Actor createRandomTetrisPiece() {
+    public Actor createRandomTetrisPiece() {
         if (blockPreview != null)
             blockPreview.removeSelf();
 
@@ -115,7 +122,7 @@ public class Tetris extends JFrame implements GGActListener {
         return t;
     }
 
-    void setCurrentTetrisBlock(Actor t) {
+    public void setCurrentTetrisBlock(Actor t) {
         gameCallback.changeOfBlock(currentBlock);
         currentBlock = t;
         playerStatistics.overwritePiece(statistics, (Piece) t);
@@ -175,7 +182,7 @@ public class Tetris extends JFrame implements GGActListener {
 
     }
 
-    void gameOver() {
+    public void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
         if (isAuto) {

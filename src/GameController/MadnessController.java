@@ -1,11 +1,13 @@
-// Pratika Dlima
+package src.GameController;
 
-package src;
+import src.TetrisPiece.Piece;
+import src.TetrisPiece.PieceFactory;
+import src.utility.Tetris;
 
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-public class MadnessController extends GameController{
+public class MadnessController extends GameController {
     public MadnessController(Tetris tetris, PieceFactory pieceFactory, Random random){
         super(tetris, pieceFactory, random);
     }

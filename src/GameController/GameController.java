@@ -1,12 +1,13 @@
-// Pratika Dlima
-package src;
+package src.GameController;
 
-import ch.aplu.jgamegrid.*;
+import src.TetrisPiece.Piece;
+import src.TetrisPiece.PieceFactory;
+import src.utility.Tetris;
 
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-public class GameController implements IGameController{
+public class GameController implements IGameController {
     protected final static int NUM_PIECES_EASY = 7;
     protected final static int ADDITIONAL_MEDIUM_PIECES = 3;
 

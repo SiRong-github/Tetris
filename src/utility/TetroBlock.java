@@ -1,5 +1,5 @@
 // TetroBlock.java
-package src;
+package src.utility;
 import ch.aplu.jgamegrid.*;
 
 public class TetroBlock extends Actor

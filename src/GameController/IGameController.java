@@ -1,5 +1,6 @@
-// Xiaojiang Zheng
-package src;
+package src.GameController;
+
+import src.TetrisPiece.Piece;
 
 public interface IGameController {
     public Piece createRandomTetrisPiece();
