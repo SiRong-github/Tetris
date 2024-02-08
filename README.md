@@ -88,6 +88,10 @@ Contains the gif images of the TetroBlocks.
    Tetris pieces for Simple Tetris.
 
 # Testing
-Open the file in IntelliJ or Eclipse and run the Driver program.
 
-To change the test case, simply change DEFAULT_PROPERTIES_PATH in the Driver program (inside the utility package) to one of the test cases in the properties folder.
+## Changing Test Case
+Head to the Driver Program in the utility folder and change DEFAULT_PROPERTIES_PATH to one of the test cases in the properties folder.
+
+## In the Terminal
+javac -cp lib/JGameGrid.jar -d out src/*/*.java
+java -cp out:lib/JGameGrid.jar:properties:sprites src.utility.Driver
