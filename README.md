@@ -89,9 +89,28 @@ Contains the gif images of the TetroBlocks.
 
 # Testing
 
-## Changing Test Case
-Head to the Driver Program in the utility folder and change DEFAULT_PROPERTIES_PATH to one of the test cases in the properties folder.
+Steps prior to compiling and running:
+1. Download (or clone) the project.
+2. Head to the project directory by writing.
 
-## In the Terminal
-javac -cp lib/JGameGrid.jar -d out src/*/*.java
-java -cp out:lib/JGameGrid.jar:properties:sprites src.utility.Driver
+	cd *projectFileLocation*
+ 
+ For example
+ 	
+  	cd Desktop
+
+3. Head to the Tetris directory in the project directory.
+
+    cd Tetris
+
+## Compiling
+
+    javac -cp lib/JGameGrid.jar -d out src/*/*.java
+
+## Running
+
+    java -cp out:lib/JGameGrid.jar:properties:sprites src.utility.Driver *testFile*
+
+For example:
+
+    java -cp out:lib/JGameGrid.jar:properties:sprites src.utility.Driver properties/test4.properties
