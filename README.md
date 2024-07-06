@@ -1,12 +1,18 @@
 # University Subject
 This project was done by a group of 3 students for SWEN30006 Software Modelling and Design of the University of Melbourne.
 
+### Demo
+
+https://github.com/SiRong-github/Tetris/assets/62817554/307ce0ec-df6f-45aa-a492-7a534217a2c1
+
+<img width="470" alt="Screenshot 2024-02-07 at 1 47 00 pm" src="https://github.com/SiRong-github/Tetris/assets/62817554/9f0dfab0-ce50-4ce0-9d4e-668e92f459cb">
+
 # About the Project
 
-## File Purpose
+### File Purpose
 The program refactors a provided replica of the simple Tetris game to better adhere to the GRASP principles and patterns. 
 
-## File-Level Documentation
+### File-Level Documentation
 This version of Tetris is similar to the original Tetris game, especially in terms of the gameplay. However, there are a few modifications:
 
 1. There are 7 differently-shaped pieces: I, J, L, O, S, T, Z. Each of these are made of 4 individual blocks called TetroBlocks. 
@@ -28,15 +34,6 @@ This version of Tetris is similar to the original Tetris game, especially in ter
     Same as Medium, only that the rotate function is disabled and each piece falls at a random speed within the range of [S, 2S], where s is the speed of the Simple Level.
 
 4. There is a Statistics file that updates the average score per round and the number of pieces played as well as the average score for each round.
-
-## Demo
-
-
-https://github.com/SiRong-github/Tetris/assets/62817554/307ce0ec-df6f-45aa-a492-7a534217a2c1
-
-
-<img width="470" alt="Screenshot 2024-02-07 at 1 47 00 pm" src="https://github.com/SiRong-github/Tetris/assets/62817554/9f0dfab0-ce50-4ce0-9d4e-668e92f459cb">
-
 
 # Provided Template Folder, Source Files (and Their Libraries) and Test Cases
 
